@@ -39,20 +39,20 @@ POST /api/mocks/generatedata?users=10&pets=15
 ## ✅ Cómo probar
 
 1. **Generar datos:**
-   \`\`\`bash
-   curl "localhost:8080/api/mocks/mockingusers?users=100"
-   \`\`\`
+   ```
+   GET "/api/mocks/mockingusers?users=50"
+   ```
 
 2. **Insertar en BD:**
-   \`\`\`bash
-   curl -X POST "localhost:8080/api/mocks/generatedata?users=20&pets=30"
-   \`\`\`
+   ```
+   POST "/api/mocks/generatedata?users=20&pets=30"
+   ```
 
 3. **Verificar que se guardaron:**
-   \`\`\`bash
-   curl "localhost:8080/api/users"
-   curl "localhost:8080/api/pets"
-   \`\`\`
+   ```
+   GET "localhost:PORT/api/users"
+   GET "localhost:PORT/api/pets"
+   ```
 
 ## 🎯 Lo que se cumplió
 
