@@ -7,7 +7,7 @@ export const createHash = async(password) =>{
     return bcrypt.hash(password,salts);
 }
 
-console.log(createHash("coder123"));
+
 
 export const passwordValidation = async(user,password) => bcrypt.compare(password,user.password);
 

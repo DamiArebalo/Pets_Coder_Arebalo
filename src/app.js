@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv/config.js';
+import "dotenv/config.js";
 
 import usersRouter from './routes/users.router.js';
 import petsRouter from './routes/pets.router.js';
@@ -10,8 +10,8 @@ import sessionsRouter from './routes/sessions.router.js';
 import mocksRouter from './routes/mocks.router.js';
 
 const app = express();
-const PORT = process.env.PORT||8090;
-const connection = mongoose.connect("mongodb+srv://coderUser:Coder123@arebalobackend.qyz6l.mongodb.net/Pets");
+const PORT = process.env.PORT||8080;
+const connection = mongoose.connect(process.env.MONGODB_URI);
 
 app.use(express.json());
 app.use(cookieParser());

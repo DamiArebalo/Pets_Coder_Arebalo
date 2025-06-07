@@ -2,7 +2,7 @@ import { Router } from 'express';
 const router = Router();
 import  generateUsers  from '../services/users.service.js';
 import { generatePets } from '../services/pets.service.js';
-import { passwordValidation } from '../utils/index.js';
+
 
 import petsController from '../controllers/pets.controller.js';
 import sessionsController from '../controllers/sessions.controller.js';
@@ -28,7 +28,7 @@ function mocksPets(req,res){
 }
 
 //funcion que genera registros de usuarios y pets segun la cantidad que se envie y lo carga a la DB
-//se prevee no modificar los controladores para que no se modifiquen las rutas
+//se prevee no modificar los controladores para que no se modifique el codigo predeterminado
 async function generateData(req,res){
     const pets = req.query.pets;
     const users = req.query.users;
@@ -60,12 +60,14 @@ async function generateData(req,res){
                 const fakeRes = { send: data => petsCreated.push(data) }; // solucion a un problema de respuestas en el mismo ciclo de ejecucion 
                 await petsController.createPet(petRequest, fakeRes);
             }
+
             for (const user of mocksUsers) {
-                user.password = "coder123"; //desencripto el password ya que se pide que todas las passwords sean iguales
+                user.password = process.env.PASSWORD_MOCK; //desencripto el password ya que se pide que todas las passwords sean iguales
                 const userRequest = { body: user };
                 usersCreated.push(user);
                 await sessionsController.register(userRequest);
             }
+            
             res.status(200).json({ message: "Data generated", pets: petsCreated, users: usersCreated });
         }else{
             res.status(400).json({message:"Invalid number of pets or users"});
