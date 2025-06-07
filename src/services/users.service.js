@@ -8,7 +8,7 @@ function generateUsers(count){
             first_name: faker.person.firstName(),
             last_name: faker.person.lastName(),
             email: faker.internet.email(),
-            password:createHashUtil(process.env.PASSWOR_MOCK),
+            password:createHashUtil(process.env.PASSWORD_MOCK),
             role: faker.helpers.arrayElement(["admin","user"]),
             pets:[]
         })
